@@ -91,7 +91,7 @@ function play(){
         rand = Math.floor(Math.random() * upAndDown.length)
         gameImage.src = upAndDown[rand]
     }
-    else if (userValue > computerNum){
+    else {
         resultArea.textContent = "Down!"
         userHist.push(userValue)
         chance--
@@ -101,14 +101,20 @@ function play(){
     }
 
     userInput.value = ""
-    chanceArea.textContent = `남은 찬스 : ${chance}`
     
     if (chance == 0){
         playButton.disabled = true
         resetButton.disabled = false
 
+        resultArea.textContent = `정답은 ${computerNum}이었습니다!`
+        chanceArea.textContent = "게임이 종료되었습니다. 리셋 버튼을 눌러주세요!"
         gameImage.src = end
+
+        return
     }
+
+    chanceArea.textContent = `남은 찬스 : ${chance}`
+
 }
 
 function handleEnterKeyPress(event){
