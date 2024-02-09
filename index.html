@@ -5,42 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 <body>
-    <h1>숫자 맞추기 게임 - F12를 눌러 확인하세요</h1>
-    <h2>구현할 기능</h2>
-    <ul>
-        <li>
-            유저는 숫자를 입력할 수 있다.
-        </li>
-        <li>
-            유저가 입력한 숫자가 컴퓨터가 뽑은 숫자보다 작으면 Up!이라고 알려준다.
-        </li>
-        <li>
-            유저가 입력한 숫자가 컴퓨터가 뽑은 숫자보다 크면 Down!이라고 알려준다.
-        </li>
-        <li>
-            유저가 입력한 숫자가 컴퓨터가 뽑은 숫자와 일치한다면 That's right이라고 뜨고 게임이 종료된다.
-        </li>
-        <li>
-            유저는 총 5번의 기회가 있다.
-        </li>
-        <li>
-            게임이 종료되면 버튼은 비활성화된다.
-        </li>
-        <li>
-            리셋버튼을 누르면 게임이 초기화된다.
-        </li>
-        <li>
-            유저가 1~100 범위 밖의 숫자를 입력할 시에 경고 메세지가 뜬다.
-        </li>
-        <li>
-            유저가 이미 입력한 값을 또 입력할 시에 경고 메세지가 뜬다.
-        </li>
-        <li>
-            반응형 UI
-        </li>
-    </ul>
+    <div class="container text-center">
+        <div style="text-align: center;">    
+            <h1 style="font-weight: bold; padding: 20px;">숫자 맞추기 게임</h1>
+            <div id="result-area" style="padding-bottom: 10px;">결과 값이 여기 나옵니다.</div>
+            <div id="chance-area" style="padding-bottom: 10px;">남은 찬스 : </div>
+        </div>
+        <div style="text-align: center; padding-bottom: 20px;">
+            <img id="game-image" style="height: 250px;" src="./image/99B016465E307B5D05.gif">
+        </div>
+        <div class="input-group mb-3" style="margin: 0 auto; width: auto; max-width: 584px;">
+            <input type="number" id="user-input" class="form-control" placeholder="" aria-label="Example text with two button addons">
+            <button id="play-button" class="btn btn-outline-secondary" type="button">Go!</button>
+            <button id="reset-button" class="btn btn-outline-secondary" type="button">리셋버튼</button>
+        </div>
+    </div>
+
     <script src="main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 </html>
