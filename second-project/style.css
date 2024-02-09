@@ -1,0 +1,72 @@
+body {
+    margin: 0;
+    background-image: url("image/360_F_104621726_C6phckmrmRZkDbXvga2nyOPsXoZsWGhY.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.input-area{
+    padding: 1em 1em 0 1em;
+}
+
+.progress-group{
+    flex: 8.5;
+    height: 15px;
+}
+
+.progress-info{
+    flex: 1.5;
+}
+
+.progress-area{
+    display: flex;
+    align-items: center;
+    padding-bottom: 10px;
+    padding-right: 15px;
+    width: auto;
+}
+
+.container{
+    min-height: 100vh;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.task-area{
+    border: 1px solid lightgray;
+}
+
+.task-tabs{
+    display: flex;
+    border-bottom: 1px solid lightgray;
+    position: relative;
+}
+
+.task-tabs div{
+    padding:1em;
+}
+
+#under-line{
+    height: 4px;
+    width: 65px;
+    background-color: yellowgreen;
+    position: absolute;
+    left: 0px;
+    top: 50px;
+    padding: 0px;
+}
+
+.task{
+    display: flex;
+    justify-content: space-between;
+    padding: 1em;
+    font-weight: bold;
+}
+
+.task-done{
+    text-decoration:line-through;
+}
+
+.task-area-done{
+    background-color: lightgray;
+    opacity : 0.5;
+}
