@@ -11,13 +11,18 @@
 //전체 탭을 누르면 다시 전체 아이템으로 돌아옴
 
 let taskList = []
-let taskStatus = "ALL"
+let taskStatus = "all"
 
 let taskInput = document.getElementById("task-input")
 let addButton = document.getElementById("add-button")
 let underLine = document.getElementById("under-line")
 let progressBar = document.getElementById("p-bar")
 let percentInfo = document.getElementById("percent-info")
+let tabs = document.querySelectorAll(".task-tabs div")
+
+for (let i=1; i<tabs.length; i++){
+    tabs[i].addEventListener("click", function(event) {filter(event)})
+}
 
 addButton.addEventListener("click", addTask)
 document.addEventListener("keypress", handleEnterKeyPress)
@@ -54,13 +59,15 @@ function handleEnterKeyPress(event){
 }
 
 function render(status){
+    taskStatus = status
+
     let completeCount = 0
     let resultHTML = ""
 
     for (let i = 0; i < taskList.length; i++){
         if ((taskList[i].isComplete == true)){
             
-            if (status == "ALL"|| status == "END"){
+            if (status == "all"|| status == "finish"){
                 resultHTML += `
                 <div  class="task task-area-done">
                     <div class="task-done">                    
@@ -76,7 +83,7 @@ function render(status){
 
             completeCount++
         }
-        else if ((taskList[i].isComplete != true) && (status == "ALL"|| status == "START")) {
+        else if ((taskList[i].isComplete != true) && (status == "all"|| status == "ongoing")) {
             resultHTML += `
             <div class="task">
                 <div>                    
@@ -91,8 +98,8 @@ function render(status){
         }
     }
     document.getElementById("task-board").innerHTML = resultHTML
-
-    let percent = taskList.length == 0 ? 0 : completeCount / taskList.length * 100
+    
+    let percent = taskList.length == 0 ? 0 : Math.floor(completeCount / taskList.length * 100)
     progressBar.style.width = `${percent}%`
     percentInfo.textContent = `${percent}%`  
 }
@@ -119,23 +126,16 @@ function deleteTask(id){
     render(taskStatus)
 }
 
-function showAllTasks(){
-    taskStatus = "ALL"
+function filter(event){
+    if (event.target.id == "all"){
+        underLine.style.left = "0px"
+    }
+    else if (event.target.id == "ongoing"){
+        underLine.style.left = "75px"
+    }
+    else {
+        underLine.style.left = "150px"
+    }
 
-    underLine.style.left = "0px"
-    render(taskStatus)
-}
-
-function showStartTasks(){
-    taskStatus = "START"
-
-    underLine.style.left = "75px"
-    render(taskStatus)
-}
-
-function showEndTasks(){
-    taskStatus = "END"
-
-    underLine.style.left = "150px"
-    render(taskStatus)
+    render(event.target.id)
 }
