@@ -1,5 +1,4 @@
-
-const API_KEY = '219e7f9edbec40a8a1b6d759204398de'
+const API_KEY = ''
 
 let url = "";
 let news = [];
@@ -154,7 +153,7 @@ function searchArticle(){
 
 function changeCategory(category){
     page = 1;
-    
+
     category = category.toLowerCase();
     url = new URL(`https://newsapi.org/v2/top-headlines?country=us&category=${category}&apiKey=${API_KEY}`);
     getArticle(url);
