@@ -54,7 +54,7 @@ categoryList.forEach(item => {
 
 sidebarList.forEach(item => {
     item.addEventListener("click", function(){
-        
+
         changeCategory(item.textContent);
 
         categoryList.forEach(link => {
@@ -86,6 +86,8 @@ async function getArticle(){
 
         news = data.articles;
         totalResults = data.totalResults
+
+        console.log(news);
 
         if (response.status === 200){
             render();
@@ -141,7 +143,7 @@ function render(){
         <div class="card mb-3">
             <div class="row g-0">
                 <div class="col-md-4">
-                <img src="${urlToImage}" class="img-fluid rounded-start">
+                <img src="${urlToImage}" onerror="this.onerror=null; this.src='NotImage.JPG';" class="img-fluid rounded-start">
                 </div>
                 <div class="col-md-8">
                 <div class="card-body">
@@ -177,14 +179,17 @@ function getLatestArticle(){
 function searchArticle(){
     page = 1;
 
+    console.log("HE")
     if (searchInput.value != null && searchInput.value != undefined  && searchInput.value != ""){
-        
+
         url = new URL(`https://noona-times-v2.netlify.app/top-headlines?q=${searchInput.value}&apiKey=${API_KEY}`);
         getArticle(url);
         
         categoryList.forEach(link => {
             link.classList.remove("active")
         })
+
+        closeNav();
     }
 }
 
