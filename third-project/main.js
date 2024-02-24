@@ -1,4 +1,4 @@
-const API_KEY = ""
+const API_KEY = "b1fe516cb2ff4032b010ec5773f3a973"
 
 let url = "";
 let news = [];
