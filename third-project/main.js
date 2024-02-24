@@ -18,8 +18,10 @@ searchIcon.addEventListener("click", visibleSearch)
 searchButton.addEventListener("click", searchArticle)
 document.addEventListener("keypress", handleEnterKeyPress)
 
+navWidth = "250px";
+
 const openNav = () => {
-    document.getElementById("mySidenav").style.width = "250px";
+    document.getElementById("mySidenav").style.width = navWidth;
 };
   
 const closeNav = () => {
@@ -28,7 +30,14 @@ const closeNav = () => {
 
 window.addEventListener('resize', function() {
     if (window.innerWidth > 1000) {
-        document.getElementById("mySidenav").style.width = "0";
+        closeNav();
+        navWidth = "250px";
+    }
+    else if (window.innerWidth <= 480){
+        navWidth = "100px";
+    }
+    else{
+        navWidth = "250px";
     }
  });
 
