@@ -179,7 +179,6 @@ function getLatestArticle(){
 function searchArticle(){
     page = 1;
 
-    console.log("HE")
     if (searchInput.value != null && searchInput.value != undefined  && searchInput.value != ""){
 
         url = new URL(`https://noona-times-v2.netlify.app/top-headlines?q=${searchInput.value}&apiKey=${API_KEY}`);
