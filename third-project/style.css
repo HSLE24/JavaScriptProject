@@ -20,7 +20,11 @@
 #search-button{
     display: none;
 }
-
+@media (min-width: 767.98px) {
+    #mySidenav{
+        width: 0;
+    }
+  }
 .side-menu {
     height: 100%;
     width: 0;
@@ -32,12 +36,8 @@
     overflow-x: hidden;
     transition: 0.5s;
     padding-top: 60px;
-}
-.side-menu-list button {
-    margin: 5px;
-    border: none;
-    background: none;
-    width: 120px;
+    overflow-y: auto; /* 세로 스크롤바 추가 */
+    max-height: 100vh; /* 화면 높이보다 크면 스크롤바 표시 */
 }
 .side-menu .closebtn {
     position: absolute;

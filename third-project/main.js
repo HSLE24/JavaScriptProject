@@ -26,6 +26,12 @@ const closeNav = () => {
     document.getElementById("mySidenav").style.width = "0";
 };
 
+window.addEventListener('resize', function() {
+    if (window.innerWidth > 1000) {
+        document.getElementById("mySidenav").style.width = "0";
+    }
+ });
+
 categoryList.forEach(item => {
     item.addEventListener("click", function(){
         categoryList.forEach(link => {
