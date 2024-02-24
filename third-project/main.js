@@ -1,3 +1,5 @@
+const API_KEY = "b1fe516cb2ff4032b010ec5773f3a973";
+
 let url = "";
 let news = [];
 
@@ -70,31 +72,22 @@ async function getArticle(){
         news = data.articles;
         totalResults = data.totalResults
 
-        console.log(news);
-        console.log(totalResults);
-        
+        if (response.status === 200){
+            render();
+            paginationRender();
+        }
+        else {
+            throw new Error(data.message)
+        }
         if (news.length < 1){
             throw new Error("No matches for your search")
         }
-        if (response.status != 200){
-            const responseError = {
-                400: "Bad Request",
-                401: "Unauthorized",
-                404: "Not Found",
-                429: "Too Many Requests",
-                500: "Server Error"
-            }
-
-            throw new Error(responseError[response.status])
-        }
-        render();
-        paginationRender();
     }
     catch(error){
 
         let resultHTML = `
         <div class="alert alert-danger" role="alert">
-            ${error}
+            ${error.message}
         </div>
         `;
         document.getElementById("article-group").innerHTML = resultHTML;
@@ -162,7 +155,7 @@ function handleEnterKeyPress(event){
 function getLatestArticle(){
     page = 1;
 
-    url = new URL(`https://newstimes-mj.netlify.app/top-headlines`);
+    url = new URL(`https://noona-times-v2.netlify.app/top-headlines?country=kr&apiKey=${API_KEY}`);
     getArticle(url);
 }
 
@@ -171,21 +164,20 @@ function searchArticle(){
 
     if (searchInput.value != null && searchInput.value != undefined  && searchInput.value != ""){
         
-        url = new URL(`https://newstimes-mj.netlify.app/top-headlines?q=${searchInput.value}`);
+        url = new URL(`https://noona-times-v2.netlify.app/top-headlines?q=${searchInput.value}&apiKey=${API_KEY}`);
         getArticle(url);
         
         categoryList.forEach(link => {
             link.classList.remove("active")
         })
     }
-
 }
 
 function changeCategory(category){
     page = 1;
     
     category = category.toLowerCase();
-    url = new URL(`https://newstimes-mj.netlify.app/top-headlines?category=${category}`);
+    url = new URL(`https://noona-times-v2.netlify.app/top-headlines?country=kr&category=${category}&apiKey=${API_KEY}`);
     getArticle(url);
 }
 
@@ -205,7 +197,7 @@ const paginationRender = () => {
         paginationHTML = `<li class="page-item nonvisible"><a class="page-link" tabindex="-1" aria-disabled="true"><<</a></li>`
         paginationHTML += `<li class="page-item nonvisible"><a class="page-link" tabindex="-1" aria-disabled="true">Previous</a></li>`
     
-    } else {
+    } else{
         paginationHTML = `<li class="page-item" onclick="moveToPage(${1})"><a class="page-link" tabindex="-1" aria-disabled="true"><<</a></li>`
         paginationHTML += `<li class="page-item" onclick="moveToPage(${page-1})"><a class="page-link" tabindex="-1" aria-disabled="true">Previous</a></li>`
     }
@@ -218,7 +210,7 @@ const paginationRender = () => {
         paginationHTML += `<li class="page-item nonvisible"><a class="page-link" tabindex="-1" aria-disabled="true">Next</a></li>`
         paginationHTML += `<li class="page-item nonvisible"><a class="page-link" tabindex="-1" aria-disabled="true">>></a></li>`
 
-    } else {
+    } else  if (news.length >= 1){
         paginationHTML += `<li class="page-item" onclick="moveToPage(${page+1})"><a class="page-link" tabindex="-1" aria-disabled="true">Next</a></li>`
         paginationHTML += `<li class="page-item" onclick="moveToPage(${totalPages})"><a class="page-link" tabindex="-1" aria-disabled="true">>></a></li>`
     }
