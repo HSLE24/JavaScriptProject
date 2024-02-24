@@ -1,5 +1,3 @@
-const API_KEY = "b1fe516cb2ff4032b010ec5773f3a973"
-
 let url = "";
 let news = [];
 
@@ -164,7 +162,7 @@ function handleEnterKeyPress(event){
 function getLatestArticle(){
     page = 1;
 
-    url = new URL(`https://newsapi.org/v2/top-headlines?country=us&apiKey=${API_KEY}`);
+    url = new URL(`https://newstimes-mj.netlify.app/top-headlines`);
     getArticle(url);
 }
 
@@ -172,7 +170,7 @@ function searchArticle(){
     page = 1;
 
     if (searchInput.value != null && searchInput.value != undefined  && searchInput.value != ""){
-        url = new URL(`https://newsapi.org/v2/top-headlines?q=${searchInput.value}&apiKey=${API_KEY}`);
+        url = new URL(`https://newstimes-mj.netlify.app/top-headlines?q=${searchInput.value}`);
         getArticle(url);
     }
 
@@ -182,7 +180,7 @@ function changeCategory(category){
     page = 1;
     
     category = category.toLowerCase();
-    url = new URL(`https://newsapi.org/v2/top-headlines?country=us&category=${category}&apiKey=${API_KEY}`);
+    url = new URL(`https://newstimes-mj.netlify.app/top-headlines?category=${category}`);
     getArticle(url);
 
 }
