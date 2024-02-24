@@ -48,12 +48,27 @@ categoryList.forEach(item => {
         })
 
         item.classList.add("active")
+
         changeCategory(item.textContent);
+
+        sidebarList.forEach(link => {
+            if (link.textContent == item.textContent){
+                link.classList.add("blue")
+            }
+            else {
+                link.classList.remove("blue")
+            }
+        })
     })
 });
 
 sidebarList.forEach(item => {
     item.addEventListener("click", function(){
+
+        sidebarList.forEach(link => {
+            link.classList.remove("blue")
+        })
+        item.classList.add("blue")
 
         changeCategory(item.textContent);
 
@@ -186,6 +201,9 @@ function searchArticle(){
         
         categoryList.forEach(link => {
             link.classList.remove("active")
+        })
+        sidebarList.forEach(link => {
+            link.classList.remove("blue")
         })
 
         closeNav();
