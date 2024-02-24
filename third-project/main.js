@@ -170,8 +170,13 @@ function searchArticle(){
     page = 1;
 
     if (searchInput.value != null && searchInput.value != undefined  && searchInput.value != ""){
+        
         url = new URL(`https://newstimes-mj.netlify.app/top-headlines?q=${searchInput.value}`);
         getArticle(url);
+        
+        categoryList.forEach(link => {
+            link.classList.remove("active")
+        })
     }
 
 }
@@ -182,7 +187,6 @@ function changeCategory(category){
     category = category.toLowerCase();
     url = new URL(`https://newstimes-mj.netlify.app/top-headlines?category=${category}`);
     getArticle(url);
-
 }
 
 const paginationRender = () => {
